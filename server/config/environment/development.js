@@ -8,5 +8,5 @@ module.exports = {
     uri: 'mongodb://localhost/simplecompta-dev'
   },
 
-  seedDB: true
+  seedDB: false
 };
