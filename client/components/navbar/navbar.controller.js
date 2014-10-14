@@ -5,7 +5,11 @@ angular.module('simpleComptaApp')
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
-    }];
+    },
+        {
+            'title':'Dépenses',
+            'link':'/expenses'
+        }];
 
     $scope.isCollapsed = true;
     $scope.isLoggedIn = Auth.isLoggedIn;

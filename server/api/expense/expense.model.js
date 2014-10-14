@@ -3,11 +3,15 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
+var paiementMethods = ['Cash','CB','Cheque']
+
+
 var ExpenseSchema = new Schema({
-  title: String,
-  date: {type:String,default:Date.now},
+    title: String,
+    date: {type:String,default:Date.now},
     amount:{type:Number,default:0},
-  author:{type:Schema.Types.ObjectId,ref:'User'}
+    paiementMethod:{type:String,enum:paiementMethods},
+    author:{type:Schema.Types.ObjectId,ref:'User'}
 });
 
 ExpenseSchema.statics={

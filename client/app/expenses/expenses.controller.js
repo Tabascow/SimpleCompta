@@ -10,11 +10,13 @@ angular.module('simpleComptaApp')
             });
 
         };
-
     });
 
 angular.module('simpleComptaApp')
     .controller('ExpensesEditCtrl', function ($scope, $timeout, Expense, $state, $stateParams) {
+
+        $scope.items = ['Cash','CB','Cheque']
+
         $scope.expense =  Expense.get({id: $stateParams.id});
 
         $scope.updateExpense = function () {
@@ -24,7 +26,11 @@ angular.module('simpleComptaApp')
     });
 angular.module('simpleComptaApp')
     .controller('ExpensesCreateCtrl', function ($scope, $timeout, Expense, $state) {
+        $scope.items = ['Cash','CB','Cheque']
+
         $scope.expense =  new Expense();
+
+
         $scope.expense.title= 'test';
         $scope.createExpense = function () {
             $scope.expense.$save();
