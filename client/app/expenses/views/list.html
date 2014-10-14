@@ -1,0 +1,23 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<h1>Les dépenses</h1>
+
+
+<a ui-sref="create expense" class="btn-primary btn-lg">Nouvelle dépense</a>
+
+<table class="table table-striped">
+    <tr>
+        <td>Titre</td>
+        <td>Date</td>
+        <td>Montant</td>
+        <td>Méthode de paiement</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr ng-repeat="expense in expenses">
+        <td>{{expense.title}}</td>
+        <td>{{expense.date | date:'dd/MM/yyyy'}}</td>
+        <td>{{expense.amount}}</td>
+        <td><a class="btn btn-primary" ui-sref="update expense({id:expense._id})">Editer</a></td>
+        <td><a class="btn btn-primary" ng-click="deleteExpense(expense)">Supprimer</a> </td>
+    </tr>
+</table>
