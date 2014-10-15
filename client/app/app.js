@@ -5,7 +5,8 @@ angular.module('simpleComptaApp', [
   'ngResource',
   'ngSanitize',
   'ui.router',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'ui.utils'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider
@@ -13,6 +14,7 @@ angular.module('simpleComptaApp', [
 
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('authInterceptor');
+
   })
 
   .factory('authInterceptor', function ($rootScope, $q, $cookieStore, $location) {

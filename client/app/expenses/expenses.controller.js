@@ -10,6 +10,27 @@ angular.module('simpleComptaApp')
             });
 
         };
+
+        $scope.myData = [
+            {
+                "firstName": "Cox",
+                "lastName": "Carney",
+                "company": "Enormo",
+                "employed": true
+            },
+            {
+                "firstName": "Lorraine",
+                "lastName": "Wise",
+                "company": "Comveyer",
+                "employed": false
+            },
+            {
+                "firstName": "Nancy",
+                "lastName": "Waters",
+                "company": "Fuelton",
+                "employed": false
+            }
+        ];
     });
 
 angular.module('simpleComptaApp')
@@ -23,18 +44,31 @@ angular.module('simpleComptaApp')
             $scope.expense.$update();
             $state.go('all expenses');
         };
+
+
+        $scope.open = function($event) {
+            $event.preventDefault();
+            $event.stopPropagation();
+
+            $scope.opened = true;
+        };
     });
 angular.module('simpleComptaApp')
     .controller('ExpensesCreateCtrl', function ($scope, $timeout, Expense, $state) {
         $scope.items = ['Cash','CB','Cheque']
 
-        $scope.expense =  new Expense();
+        $scope.expense =  new Expense()
 
-
-        $scope.expense.title= 'test';
         $scope.createExpense = function () {
             $scope.expense.$save();
             $state.go('all expenses');
+        };
+
+        $scope.open = function($event) {
+            $event.preventDefault();
+            $event.stopPropagation();
+
+            $scope.opened = true;
         };
     });
 
