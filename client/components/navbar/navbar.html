@@ -27,3 +27,6 @@
     </div>
   </div>
 </div>
+<div class="alerts">
+    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="alert.close()">{{ alert.msg }}</alert>
+</div>

@@ -1,0 +1,60 @@
+<div class="form-group">
+    <label for="title" class="col-sm-2 control-label">Titre</label>
+
+    <div class="col-sm-4">
+        <input type="text" ng-model="revenue.title" class="form-control" id="title" name="title" required />
+    </div>
+    <div class="error-container col-sm-offset-2 col-sm-10" ng-show="form.title.$dirty && form.title.$invalid">
+        <small class="error" ng-show="form.title.$error.required">Titre requis.</small>
+    </div>
+</div>
+<div class="form-group">
+    <label for="date" class="col-sm-2 control-label">Date</label>
+    <div class="col-sm-2">
+        <input  type="text" class="form-control" datepicker-popup="dd/MM/yyyy" ng-focus="open($event)" ng-click="open($event)" ng-model="revenue.date" is-open="$parent.opened" close-text="Close" id="date" name="date" />
+    </div>
+</div>
+<div class="form-group">
+    <label for="amountInCash" class="col-sm-2 control-label">Montant Cash</label>
+
+    <div class="col-sm-2">
+        <input type="text" ng-model="revenue.amountInCash" class="form-control" id="amountInCash" name="amountInCash"  smart-float required />
+    </div>
+    <div class="error-container col-sm-offset-2 col-sm-10" ng-show="form.amountInCash.$dirty && form.amountInCash.$invalid">
+        <small class="error" ng-show="form.amountInCash.$error.required">Montant requis.</small>
+        <small class="error" ng-show="form.amountInCash.$error.float">Mauvais format.</small>
+    </div>
+
+</div>
+<div class="form-group">
+    <label for="amountInCheque" class="col-sm-2 control-label">Montant Cheque</label>
+
+    <div class="col-sm-2">
+        <input type="text" ng-model="revenue.amountInCheque" class="form-control" id="amountInCheque" name="amountInCheque"  smart-float required />
+    </div>
+    <div class="error-container col-sm-offset-2 col-sm-10" ng-show="form.amountInCheque.$dirty && form.amountInCheque.$invalid">
+        <small class="error" ng-show="form.amountInCheque.$error.required">Montant requis.</small>
+        <small class="error" ng-show="form.amountInCheque.$error.float">Mauvais format.</small>
+    </div>
+
+</div>
+<div class="form-group">
+    <label for="amountInCb" class="col-sm-2 control-label">Montant CB</label>
+
+    <div class="col-sm-2">
+        <input type="text" ng-model="revenue.amountInCb" class="form-control" id="amountInCb" name="amountInCb"  smart-float required />
+    </div>
+    <div class="error-container col-sm-offset-2 col-sm-10" ng-show="form.amountInCb.$dirty && form.amountInCb.$invalid">
+        <small class="error" ng-show="form.amountInCb.$error.required">Montant requis.</small>
+        <small class="error" ng-show="form.amountInCb.$error.float">Mauvais format.</small>
+    </div>
+
+</div>
+
+
+<div class="form-group">
+
+    <div class="col-sm-offset-2 col-sm-10">
+        <input type="submit" class="btn btn-primary" value="Save" ng-disabled="form.$invalid" />
+    </div>
+</div>

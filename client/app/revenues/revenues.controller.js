@@ -1,30 +1,29 @@
 'use strict';
 
 angular.module('simpleComptaApp')
-    .controller('ExpensesCtrl', function ($scope, $timeout, Expense, userNotification) {
-        $scope.expenses = Expense.query();
+    .controller('RevenuesCtrl', function ($scope, $timeout, Revenue,userNotification) {
+        $scope.revenues = Revenue.query();
 
-        $scope.deleteExpense = function (expense) {
-            expense.$delete(function () {
-                userNotification.add("success", "La dépense a été supprimée");
-                $scope.expenses.splice($scope.expenses.indexOf(expense),1);
+        $scope.deleteRevenue = function (revenue) {
+            revenue.$delete(function () {
+                userNotification.add("success", "La recette a été supprimée");
+                $scope.revenues.splice($scope.revenues.indexOf(revenue),1);
             },function(error){
                 Alert.add("warning", "Erreur lors de la suppression");
             });
+
         };
     });
 
 angular.module('simpleComptaApp')
-    .controller('ExpensesEditCtrl', function ($scope, $timeout, Expense, $state, $stateParams,userNotification) {
+    .controller('RevenuesEditCtrl', function ($scope, $timeout, Revenue, $state, $stateParams,userNotification) {
 
-        $scope.items = ['Cash','CB','Cheque']
+        $scope.revenue =  Revenue.get({id: $stateParams.id});
 
-        $scope.expense =  Expense.get({id: $stateParams.id});
-
-        $scope.updateExpense = function () {
-            $scope.expense.$update(function () {
+        $scope.updateRevenue = function () {
+            $scope.revenue.$update(function () {
                 userNotification.add("success", "La recette a été modifiée");
-                $state.go('all expenses');
+                $state.go('all revenues');
             },function(error){
                 Alert.add("warning", "Erreur lors de la modification");
             });
@@ -39,15 +38,15 @@ angular.module('simpleComptaApp')
         };
     });
 angular.module('simpleComptaApp')
-    .controller('ExpensesCreateCtrl', function ($scope, $timeout, Expense, $state,userNotification) {
+    .controller('RevenuesCreateCtrl', function ($scope, $timeout, Revenue, $state,userNotification) {
         $scope.items = ['Cash','CB','Cheque']
 
-        $scope.expense =  new Expense()
+        $scope.revenue =  new Revenue()
 
-        $scope.createExpense = function () {
-            $scope.expense.$save(function () {
+        $scope.createRevenue = function () {
+            $scope.revenue.$save(function () {
                 userNotification.add("success", "La recette a été ajoutée");
-                $state.go('all expenses');
+                $state.go('all revenues');
             },function(error){
                 Alert.add("warning", "Erreur lors de l'ajout");
             });
