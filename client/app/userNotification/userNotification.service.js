@@ -7,7 +7,7 @@ angular.module('simpleComptaApp')
 
         return userNotificationService = {
             add: function(type, msg, timeout) {
-                timeout = (typeof timeout === "undefined")? 3000:timeout;
+                timeout = (typeof timeout === 'undefined')? 3000:timeout;
                 $rootScope.alerts.push({
                     type: type,
                     msg: msg,

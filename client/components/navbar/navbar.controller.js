@@ -5,15 +5,18 @@ angular.module('simpleComptaApp')
         $scope.menu = [
             {
                 'title': 'Home',
-                'link': '/'
+                'link': '/',
+              'icon':'fa-dashboard'
             },
             {
                 'title': 'Dépenses',
-                'link': '/expenses'
+                'link': '/expenses',
+              'icon':'fa-upload'
             },
             {
                 'title': 'Recettes',
-                'link': '/revenues'
+                'link': '/revenues',
+              'icon':'fa-download'
             }
         ];
 

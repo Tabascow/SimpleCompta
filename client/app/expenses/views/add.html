@@ -1,4 +1,8 @@
-<div ng-include="'components/navbar/navbar.html'"></div>
+<div id="wrapper">
+  <div ng-include="'components/navbar/navbar.html'"></div>
+  <div id="page-wrapper">
 <form class="form-horizontal" name="form" ng-submit="createExpense()" novalidate>
     <div ng-include="'app/expenses/views/form.html'"></div>
 </form>
+    </div>
+  </div>

@@ -6,10 +6,10 @@ angular.module('simpleComptaApp')
 
         $scope.deleteExpense = function (expense) {
             expense.$delete(function () {
-                userNotification.add("success", "La dépense a été supprimée");
+                userNotification.add('success', 'La dépense a été supprimée');
                 $scope.expenses.splice($scope.expenses.indexOf(expense),1);
-            },function(error){
-                Alert.add("warning", "Erreur lors de la suppression");
+            },function(){
+                userNotification.add('warning', 'Erreur lors de la suppression');
             });
         };
     });
@@ -17,16 +17,16 @@ angular.module('simpleComptaApp')
 angular.module('simpleComptaApp')
     .controller('ExpensesEditCtrl', function ($scope, $timeout, Expense, $state, $stateParams,userNotification) {
 
-        $scope.items = ['Cash','CB','Cheque']
+        $scope.items = ['Cash','CB','Cheque'];
 
         $scope.expense =  Expense.get({id: $stateParams.id});
 
         $scope.updateExpense = function () {
             $scope.expense.$update(function () {
-                userNotification.add("success", "La recette a été modifiée");
+                userNotification.add('success', 'La recette a été modifiée');
                 $state.go('all expenses');
-            },function(error){
-                Alert.add("warning", "Erreur lors de la modification");
+            },function(){
+              userNotification.add('warning', 'Erreur lors de la modification');
             });
         };
 
@@ -40,16 +40,16 @@ angular.module('simpleComptaApp')
     });
 angular.module('simpleComptaApp')
     .controller('ExpensesCreateCtrl', function ($scope, $timeout, Expense, $state,userNotification) {
-        $scope.items = ['Cash','CB','Cheque']
+        $scope.items = ['Cash','CB','Cheque'];
 
-        $scope.expense =  new Expense()
+        $scope.expense =  new Expense();
 
         $scope.createExpense = function () {
             $scope.expense.$save(function () {
-                userNotification.add("success", "La recette a été ajoutée");
+                userNotification.add('success', 'La recette a été ajoutée');
                 $state.go('all expenses');
-            },function(error){
-                Alert.add("warning", "Erreur lors de l'ajout");
+            },function(){
+              userNotification.add('warning', 'Erreur lors de l\'ajout');
             });
         };
 

@@ -6,10 +6,10 @@ angular.module('simpleComptaApp')
 
         $scope.deleteRevenue = function (revenue) {
             revenue.$delete(function () {
-                userNotification.add("success", "La recette a été supprimée");
+                userNotification.add('success', 'La recette a été supprimée');
                 $scope.revenues.splice($scope.revenues.indexOf(revenue),1);
-            },function(error){
-                Alert.add("warning", "Erreur lors de la suppression");
+            },function(){
+              userNotification.add('warning', 'Erreur lors de la suppression');
             });
 
         };
@@ -22,10 +22,10 @@ angular.module('simpleComptaApp')
 
         $scope.updateRevenue = function () {
             $scope.revenue.$update(function () {
-                userNotification.add("success", "La recette a été modifiée");
+                userNotification.add('success', 'La recette a été modifiée');
                 $state.go('all revenues');
-            },function(error){
-                Alert.add("warning", "Erreur lors de la modification");
+            },function(){
+              userNotification.add('warning', 'Erreur lors de la modification');
             });
         };
 
@@ -39,16 +39,16 @@ angular.module('simpleComptaApp')
     });
 angular.module('simpleComptaApp')
     .controller('RevenuesCreateCtrl', function ($scope, $timeout, Revenue, $state,userNotification) {
-        $scope.items = ['Cash','CB','Cheque']
+        $scope.items = ['Cash','CB','Cheque'];
 
-        $scope.revenue =  new Revenue()
+        $scope.revenue =  new Revenue();
 
         $scope.createRevenue = function () {
             $scope.revenue.$save(function () {
-                userNotification.add("success", "La recette a été ajoutée");
+                userNotification.add('success', 'La recette a été ajoutée');
                 $state.go('all revenues');
-            },function(error){
-                Alert.add("warning", "Erreur lors de l'ajout");
+            },function(){
+              userNotification.add('warning', 'Erreur lors de l\'ajout');
             });
         };
 
