@@ -2,21 +2,14 @@
 
 angular.module('simpleComptaApp')
   .controller('MainCtrl', function ($scope, $http) {
-    $scope.awesomeThings = [];
+    $scope.lastExpenses = [];
+    $scope.lastRevenues = [];
 
-    $http.get('/api/things').success(function(awesomeThings) {
-      $scope.awesomeThings = awesomeThings;
+    $http.get('/api/expenses/recents').success(function(res) {
+      $scope.lastExpenses = res;
     });
 
-    $scope.addThing = function() {
-      if($scope.newThing === '') {
-        return;
-      }
-      $http.post('/api/things', { name: $scope.newThing });
-      $scope.newThing = '';
-    };
-
-    $scope.deleteThing = function(thing) {
-      $http.delete('/api/things/' + thing._id);
-    };
+    $http.get('/api/revenues/recents').success(function(res) {
+      $scope.lastRevenues = res;
+    });
   });

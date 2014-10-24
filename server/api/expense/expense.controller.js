@@ -11,6 +11,13 @@ exports.index = function(req, res) {
   });
 };
 
+exports.recents = function(req,res){
+  Expense.loadRecent(function(err,expenses){
+    if(err){ return handleError(res,err);}
+    return res.json(200,expenses);
+  });
+};
+
 // Get a single expense
 exports.show = function(req, res) {
   Expense.findById(req.params.id, function (err, expense) {
