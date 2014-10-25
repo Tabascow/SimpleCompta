@@ -11,13 +11,13 @@ var ExpenseSchema = new Schema({
     date: {type:String,default:Date.now},
     amount:{type:Number,default:0},
     paiementMethod:{type:String,enum:paiementMethods},
-    author:{type:Schema.Types.ObjectId,ref:'User'}
+    user:{type:Schema.Types.ObjectId,ref:'User'}
 });
 
 ExpenseSchema.statics={
     loadRecent:function(cb){
         this.find({})
-            .populate({path:'author',select:'name'})
+            .populate({path:'user',select:'name'})
             .sort('-date')
             .limit(20)
             .exec(cb);

@@ -10,13 +10,13 @@ var RevenueSchema = new Schema({
     amountInCash:{type:Number,default:0},
     amountInCheque:{type:Number,default:0},
     amountInCb:{type:Number,default:0},
-    author:{type:Schema.Types.ObjectId,ref:'User'}
+    user:{type:Schema.Types.ObjectId,ref:'User'}
 });
 
 RevenueSchema.statics={
     loadRecent:function(cb){
         this.find({})
-            .populate({path:'author',select:'name'})
+            .populate('user')
             .sort('-date')
             .limit(20)
             .exec(cb);

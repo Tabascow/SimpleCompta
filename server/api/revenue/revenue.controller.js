@@ -29,7 +29,9 @@ exports.show = function(req, res) {
 
 // Creates a new revenue in the DB.
 exports.create = function(req, res) {
-  Revenue.create(req.body, function(err, revenue) {
+  var reqBody = req.body;
+  reqBody.user = req.user;
+  Revenue.create(reqBody, function(err, revenue) {
     if(err) { return handleError(res, err); }
     return res.json(201, revenue);
   });

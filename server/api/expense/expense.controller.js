@@ -29,7 +29,9 @@ exports.show = function(req, res) {
 
 // Creates a new expense in the DB.
 exports.create = function(req, res) {
-  Expense.create(req.body, function(err, expense) {
+  var reqBody = req.body;
+  reqBody.user = req.user;
+    Expense.create(reqBody, function(err, expense) {
     if(err) { return handleError(res, err); }
     return res.json(201, expense);
   });
