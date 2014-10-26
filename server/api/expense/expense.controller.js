@@ -5,7 +5,7 @@ var Expense = require('./expense.model');
 
 // Get list of expenses
 exports.index = function(req, res) {
-  Expense.find(function (err, expenses) {
+  Expense.find({'user':req.user._id},function (err, expenses) {
     if(err) { return handleError(res, err); }
     return res.json(200, expenses);
   });

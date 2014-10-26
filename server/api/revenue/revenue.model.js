@@ -16,7 +16,7 @@ var RevenueSchema = new Schema({
 RevenueSchema.statics={
     loadRecent:function(cb){
         this.find({})
-            .populate('user')
+            .populate({path:'user',select:'name'})
             .sort('-date')
             .limit(20)
             .exec(cb);

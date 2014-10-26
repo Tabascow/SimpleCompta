@@ -5,7 +5,7 @@ var Revenue = require('./revenue.model');
 
 // Get list of revenues
 exports.index = function(req, res) {
-  Revenue.find(function (err, revenues) {
+  Revenue.find({'user':req.user._id},function (err, revenues) {
     if(err) { return handleError(res, err); }
     return res.json(200, revenues);
   });
