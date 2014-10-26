@@ -12,7 +12,7 @@ exports.index = function(req, res) {
 };
 
 exports.recents = function(req,res){
-  Revenue.loadRecent(function(err,revenues){
+  Revenue.loadRecent(req.user._id,function(err,revenues){
     if(err){ return handleError(res,err);}
     return res.json(200,revenues);
   });

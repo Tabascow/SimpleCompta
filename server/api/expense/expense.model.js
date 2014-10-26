@@ -15,8 +15,8 @@ var ExpenseSchema = new Schema({
 });
 
 ExpenseSchema.statics={
-    loadRecent:function(cb){
-        this.find({})
+    loadRecent:function(userId,cb){
+        this.find({'user':userId})
             .populate({path:'user',select:'name'})
             .sort('-date')
             .limit(20)
