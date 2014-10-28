@@ -6,7 +6,8 @@ angular.module('simpleComptaApp', [
   'ngSanitize',
   'ui.router',
   'ui.bootstrap',
-  'ui.utils'
+  'ui.utils',
+  'angularFileUpload'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider

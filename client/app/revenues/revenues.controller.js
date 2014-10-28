@@ -16,7 +16,7 @@ angular.module('simpleComptaApp')
     });
 
 angular.module('simpleComptaApp')
-    .controller('RevenuesEditCtrl', function ($scope, $timeout, Revenue, $state, $stateParams,userNotification) {
+    .controller('RevenuesEditCtrl', function ($scope, $timeout, Revenue, $state, $stateParams,userNotification,$upload, $http) {
 
         $scope.revenue =  Revenue.get({id: $stateParams.id});
 
@@ -36,7 +36,38 @@ angular.module('simpleComptaApp')
 
             $scope.opened = true;
         };
+
+    $scope.deleteDocument=function(document1){
+
+      $http.delete('api/documents/'+document1._id).success(function(){
+        $scope.revenue.attachedDocuments.splice($scope.revenue.attachedDocuments.indexOf(document1),1);
+        $http.delete('api/revenues/'+ $stateParams.id +'/documents/'+document1._id);
+      });
+};
+
+    $scope.onFileSelect = function($files) {
+      //$files: an array of files selected, each file has name, size, and type.
+      for (var i = 0; i < $files.length; i++) {
+        var file = $files[i];
+        $scope.upload = $upload.upload({
+          url: 'api/revenues/'+ $stateParams.id +'/documents', //upload.php script, node.js route, or servlet url
+          data: {myObj: $scope.myModelObj},
+          file: file
+        }).progress(function(evt) {
+          var percent = parseInt(100.0 * evt.loaded / evt.total);
+          $scope.isUploading = true;
+          $scope.dynamic=percent;
+        }).success(function(data, status, headers, config) {
+          $scope.isUploading = false;
+          $scope.revenue.attachedDocuments.push(data);
+          console.log(data);
+        });
+      }
+    };
+
+
     });
+
 angular.module('simpleComptaApp')
     .controller('RevenuesCreateCtrl', function ($scope, $timeout, Revenue, $state,userNotification) {
         $scope.items = ['Cash','CB','Cheque'];
@@ -58,5 +89,7 @@ angular.module('simpleComptaApp')
 
             $scope.opened = true;
         };
+
+
     });
 

@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('simpleComptaApp')
-  .factory('Revenue', function ($resource) {
-    return $resource('api/revenues/:id', {
+  .factory('Document', function ($resource) {
+    return $resource('api/documents/:id', {
       id: '@_id'
     }, {
       update: {

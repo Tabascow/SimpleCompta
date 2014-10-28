@@ -16,6 +16,37 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
     color: #000;
     padding: 0.2em 0;
 }
+.drop-box {
+  background: #F8F8F8;
+  border: 5px dashed #DDD;
+  height: 65px;
+  text-align: center;
+  padding-top: 35px;
+  width: 100%;
+}
+
+.btn-file {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 65px;
+
+}
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  outline: none;
+  background: white;
+  cursor: inherit;
+  display: block;
+}
 
 // Component styles are injected through grunt
 // injector

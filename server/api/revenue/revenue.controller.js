@@ -1,7 +1,10 @@
 'use strict';
 
 var _ = require('lodash');
+
+var multer  = require('multer')
 var Revenue = require('./revenue.model');
+var Document = require('../document/document.model');
 
 // Get list of revenues
 exports.index = function(req, res) {
@@ -20,7 +23,7 @@ exports.recents = function(req,res){
 
 // Get a single revenue
 exports.show = function(req, res) {
-  Revenue.findById(req.params.id, function (err, revenue) {
+  Revenue.findById(req.params.id).populate('attachedDocuments').exec(function (err, revenue) {
     if(err) { return handleError(res, err); }
     if(!revenue) { return res.send(404); }
     return res.json(revenue);
@@ -37,10 +40,45 @@ exports.create = function(req, res) {
   });
 };
 
+exports.documentUpload = function(req,res){
+  Revenue.findById(req.params.id, function (err, revenue) {
+    if(err) { return handleError(res, err); }
+    if(!revenue) { return res.send(404); }
+
+    var files = req.files;
+    var file = files.file;
+
+    var document = new Document();
+    document.name = file.originalname;
+    document.file = file;
+    Document.create(document, function(err, document) {
+      if(err) { return handleError(res, err); }
+      revenue.attachedDocuments.push(document);
+      revenue.save(function (err) {
+        if (err) { return handleError(res, err); }
+        return res.json(200, document);
+      });
+    });
+  });
+}
+
+exports.documentDelete = function (req, res) {
+  Revenue.findById(req.params.id, function (err, revenue) {
+    if (err) {
+      return handleError(res, err);
+    }
+    if (!revenue) {
+      return res.send(404);
+    }
+    revenue.attachedDocuments.pull(req.params.documentId);
+    revenue.save();
+  });
+};
+
 // Updates an existing revenue in the DB.
 exports.update = function(req, res) {
   if(req.body._id) { delete req.body._id; }
-  Revenue.findById(req.params.id, function (err, revenue) {
+  Revenue.findById(req.params.id).populate('attachedDocuments').exec( function (err, revenue) {
     if (err) { return handleError(res, err); }
     if(!revenue) { return res.send(404); }
     var updated = _.merge(revenue, req.body);
