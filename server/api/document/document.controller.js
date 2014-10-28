@@ -1,6 +1,7 @@
 'use strict';
 
 var _ = require('lodash');
+var fs = require('fs');
 var Document = require('./document.model');
 
 // Get list of documents
@@ -47,9 +48,13 @@ exports.destroy = function(req, res) {
   Document.findById(req.params.id, function (err, document) {
     if(err) { return handleError(res, err); }
     if(!document) { return res.send(404); }
+    var fullPath = './uploads/'+document.file.name;
     document.remove(function(err) {
       if(err) { return handleError(res, err); }
-      return res.send(204);
+      fs.unlink(fullPath,function(err){
+        if(err) { return handleError(res, err); }
+        return res.send(204);
+      })
     });
   });
 };

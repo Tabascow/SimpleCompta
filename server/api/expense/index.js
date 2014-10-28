@@ -15,4 +15,7 @@ router.put('/:id',auth.isAuthenticated(), controller.update);
 router.patch('/:id',auth.isAuthenticated(), controller.update);
 router.delete('/:id',auth.isAuthenticated(), controller.destroy);
 
+router.post('/:id/documents',auth.isAuthenticated(), controller.documentUpload);
+router.delete('/:id/documents/:documentId',auth.isAuthenticated(), controller.documentDelete);
+
 module.exports = router;

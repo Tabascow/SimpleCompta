@@ -11,7 +11,8 @@ var ExpenseSchema = new Schema({
     date: {type:String,default:Date.now},
     amount:{type:Number,default:0},
     paiementMethod:{type:String,enum:paiementMethods},
-    user:{type:Schema.Types.ObjectId,ref:'User'}
+    user:{type:Schema.Types.ObjectId,ref:'User'},
+    attachedDocuments:[{type:Schema.Types.ObjectId,ref:'Document'}]
 });
 
 ExpenseSchema.statics={
