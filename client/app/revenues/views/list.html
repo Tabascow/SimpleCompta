@@ -1,35 +1,46 @@
 <div id="wrapper">
   <div ng-include="'components/navbar/navbar.html'"></div>
-  <div id="page-wrapper">
-    <div ng-show="revenues.length ===0"><h2>Vous n'avez pas de recette enregistrées.<br> Il est grand temps d'en <a
-      ui-sref="create revenue" class="btn btn-primary">ajouter une</a></h2></div>
+  <div id="page-content-wrapper">
+    <div class="page-content">
+      <div class="container-fluid">
+        <ul class="breadcrumb">
+          <li><a ui-sref="main">Dashboard</a></li>
+          <li class="active">Recettes</li>
+        </ul>
+            <div ng-show="revenues.length ===0"><h2>Vous n'avez pas de recette enregistrées.<br> Il est grand temps d'en <a
+              ui-sref="create revenue" class="btn btn-primary">ajouter une</a></h2></div>
 
-    <div ng-hide="revenues.length===0">
-      <a ui-sref="create revenue" class="btn btn-primary">Nouvelle recette</a>
-      <table class="table table-striped table-condensed table-responsive">
-        <thead>
-        <tr>
-          <th>Titre</th>
-          <th>Date</th>
-          <th>Montant cash</th>
-          <th>Montant cheque</th>
-          <th>Montant CB</th>
-          <th class="col-md-1"></th>
-          <th class="col-md-1"></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="revenue in revenues">
-          <td>{{revenue.title}}</td>
-          <td>{{revenue.date | date:'dd/MM/yyyy'}}</td>
-          <td>{{revenue.amountInCash}}</td>
-          <td>{{revenue.amountInCheque}}</td>
-          <td>{{revenue.amountInCb}}</td>
-          <td><a class="btn btn-primary" ui-sref="update revenue({id:revenue._id})"><i class="fa fa-edit"></i></a></td>
-          <td><a class="btn btn-primary" ng-click="deleteRevenue(revenue)"><i class="fa fa-trash-o"></i></a></td>
-        </tr>
-        </tbody>
-      </table>
+            <div ng-hide="revenues.length===0">
+              <a ui-sref="create revenue" class="btn btn-primary">Nouvelle recette</a>
+              <table class="table table-striped table-condensed table-responsive">
+                <thead>
+                <tr>
+                  <th>Titre</th>
+                  <th>Date</th>
+                  <th>Montant cash</th>
+                  <th>Montant cheque</th>
+                  <th>Montant CB</th>
+                  <th>Documents</th>
+                  <th class="col-md-1"></th>
+                  <th class="col-md-1"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="revenue in revenues">
+                  <td>{{revenue.title}}</td>
+                  <td>{{revenue.date | date:'dd/MM/yyyy'}}</td>
+                  <td>{{revenue.amountInCash}}</td>
+                  <td>{{revenue.amountInCheque}}</td>
+                  <td>{{revenue.amountInCb}}</td>
+                  <td>{{revenue.attachedDocuments.length}}</td>
+                  <td><a class="btn btn-primary" ui-sref="update revenue({id:revenue._id})"><i class="fa fa-edit"></i></a></td>
+                  <td><a class="btn btn-primary" ng-click="deleteRevenue(revenue)"><i class="fa fa-trash-o"></i></a></td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+
+      </div>
     </div>
   </div>
 </div>

@@ -1,14 +1,23 @@
 <div id="wrapper">
   <div ng-include="'components/navbar/navbar.html'"></div>
-  <div id="page-wrapper">
-    <div class="row">
-      <div class="col-sm-12 col-md-6">
-        <form class="form-horizontal" name="form" ng-submit="updateRevenue()" novalidate>
-          <div ng-include="'app/revenues/views/form.html'"></div>
-        </form>
-      </div>
-      <div class="col-sm-12 col-md-6">
-        <div ng-include="'app/revenues/views/attachedDocuments.html'"></div>
+  <div id="page-content-wrapper">
+    <div class="page-content">
+      <div class="container-fluid">
+        <ul class="breadcrumb">
+          <li><a ui-sref="main">Dashboard</a></li>
+          <li><a ui-sref="all revenues">Recettes</a></li>
+          <li class="active">Edition recette : {{revenue.title}}</li>
+        </ul>
+        <div class="row">
+          <div class="col-sm-12 col-md-6">
+            <form class="form-horizontal" name="form" ng-submit="updateRevenue()" novalidate>
+              <div ng-include="'app/revenues/views/form.html'"></div>
+            </form>
+          </div>
+          <div class="col-sm-12 col-md-6">
+            <div ng-include="'app/revenues/views/attachedDocuments.html'"></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

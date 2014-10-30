@@ -1,8 +1,18 @@
 <div id="wrapper">
   <div ng-include="'components/navbar/navbar.html'"></div>
-  <div id="page-wrapper">
-<form class="form-horizontal" name="form" ng-submit="createRevenue()" novalidate>
-    <div ng-include="'app/revenues/views/form.html'"></div>
-</form>
+  <div id="page-content-wrapper">
+    <div class="page-content">
+      <div class="container-fluid">
+        <ul class="breadcrumb">
+          <li><a ui-sref="main">Dashboard</a></li>
+          <li><a ui-sref="all revenues">Recettes</a></li>
+          <li class="active">Nouvelle recette : {{revenue.title}}</li>
+        </ul>
+            <form class="form-horizontal" name="form" ng-submit="createRevenue()" novalidate>
+              <div ng-include="'app/revenues/views/form.html'"></div>
+            </form>
+
+      </div>
     </div>
   </div>
+</div>

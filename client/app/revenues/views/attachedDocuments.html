@@ -1,29 +1,38 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Documents attachés</h3>
+  </div>
+  <div class="panel-body">
+    <div class="list-group">
+      <div ng-repeat="document in revenue.attachedDocuments">
+        <div class="row">
+          <div class="col-xs-11"><a href="{{document.file.name}}" class="list-group-item">
+            <span class="fa fa-file-text-o fa-lg"></span> {{document.name}}
+            <span class="badge">{{document.file.extension }}</span>
+          </a>
+          </div>
+          <div class="col-xs-1"><a class="btn btn-default pull-right" ng-click="deleteDocument(document)"><i
+            class="fa fa-trash-o"></i></a></div>
+        </div>
+      </div>
+    </div>
 
-<div class="row">
-  <div class="col-sm-6">
-    <span class="btn btn-default btn-file"> Ajout Fichier
+    <span class="btn btn-primary btn-file "> Ajout Fichier
     <input type="file" ng-file-select="onFileSelect($files)">
       </span>
-  </div>
-<div class="col-sm-6 ">
-  <div ng-show="dropSupported" class="drop-box"
-       ng-file-drop="onFileSelect($files)"
-       ng-file-drop-available="dropSupported=true"
-       ng-file-drag-over-class="dragOverClass($event)"
-       ng-file-drag-over-delay="100">
-    Glissez/Déposez ici
+
+    <div ng-show="dropSupported" class="drop-box"
+         ng-file-drop="onFileSelect($files)"
+         ng-file-drop-available="dropSupported=true"
+         ng-file-drag-over-class="dragOverClass($event)"
+         ng-file-drag-over-delay="100">
+      ou glissez/déposez ici
+    </div>
+    <progressbar class="progress-striped active" ng-show="isUploading" max="200" value="dynamic" type="danger"><b>{{dynamic}}%</b>
+    </progressbar>
+    <br>
+
+    <div> {{message}}</div>
   </div>
 </div>
-  <progressbar class="progress-striped active" ng-show="isUploading" max="200" value="dynamic" type="danger"><b>{{dynamic}}%</b></progressbar>
-  </div>
-  <br>
-<ul class="list-group">
-  <li ng-repeat="document in revenue.attachedDocuments" class="list-group-item">
-  <a href="{{document.file.name}}" class="btn btn-large">
-    <span class="fa fa-file-text-o fa-lg"></span> {{document.name}}
-  </a>
-    <span class="badge">{{document.file.extension }}</span>
-    <a class="btn btn-primary" ng-click="deleteDocument(document)"><i class="fa fa-trash-o"></i></a>
-  </li>
-</ul>
- <div> {{message}}</div>
+
