@@ -9,7 +9,7 @@
         </ul>
             <div ng-show="revenues.length ===0"><h2>Vous n'avez pas de recette enregistrées.<br> Il est grand temps d'en <a
               ui-sref="create revenue" class="btn btn-primary">ajouter une</a></h2></div>
-
+        <!--<div ui-grid="gridOptions" class="myGrid"></div>-->
             <div ng-hide="revenues.length===0">
               <a ui-sref="create revenue" class="btn btn-primary">Nouvelle recette</a>
               <table class="table table-striped table-condensed table-responsive">
@@ -26,7 +26,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="revenue in revenues">
+                <tr ng-repeat="revenue in revenues | orderBy:'date':true">
                   <td>{{revenue.title}}</td>
                   <td>{{revenue.date | date:'dd/MM/yyyy'}}</td>
                   <td>{{revenue.amountInCash}}</td>

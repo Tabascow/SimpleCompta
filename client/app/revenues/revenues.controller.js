@@ -1,8 +1,26 @@
 'use strict';
 
 angular.module('simpleComptaApp')
-  .controller('RevenuesCtrl', function ($scope, $timeout, Revenue, userNotification) {
+  .controller('RevenuesCtrl', function ($scope, $timeout, Revenue, userNotification,uiGridConstants) {
     $scope.revenues = Revenue.query();
+/*
+    $scope.editCellTemplate = '<a class="btn btn-primary" ui-sref="update revenue({id:row.entity._id})"><i class="fa fa-edit"></i></a>'
+    $scope.deleteCellTemplate='<a class="btn btn-primary" ng-click="deleteRevenue(row.entity)"><i class="fa fa-trash-o"></i></a>'
+    $scope.gridOptions={
+      data:$scope.revenues,
+      enableSorting:true,
+      showFooter: true,
+      multiSelect: false,
+      columnDefs:[
+        {field:'date',name:'Date',cellFilter:'date:\'dd/MM/yyyy\'',
+          sort: {priority: 0,direction: uiGridConstants.DESC}, width:'10%'},
+        {field:'title',name:'Titre', width:'50%'},
+        {field:'amountInCash',name:'Cash',aggregationType: uiGridConstants.aggregationTypes.sum},
+        {field:'amountInCheque',name:'Cheque',aggregationType: uiGridConstants.aggregationTypes.sum},
+        {field:'amountInCb',name:'CB',aggregationType: uiGridConstants.aggregationTypes.sum},
+        {name:'Actions',cellTemplate:$scope.editCellTemplate + $scope.deleteCellTemplate}
+      ]
+    }*/
 
     $scope.deleteRevenue = function (revenue) {
       revenue.$delete(function () {

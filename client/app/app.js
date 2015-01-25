@@ -7,7 +7,8 @@ angular.module('simpleComptaApp', [
   'ui.router',
   'ui.bootstrap',
   'ui.utils',
-  'angularFileUpload'
+  'angularFileUpload',
+  'ui.grid'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider
