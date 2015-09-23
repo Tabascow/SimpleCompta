@@ -2,7 +2,7 @@
 <div ng-controller="NavbarCtrl">
   <div id="sidebar-wrapper">
     <ul class="sidebar-nav nav">
-      <li class="sidebar-brand"><img src="http://placehold.it/130x130" class="img-circle"></li>
+      <li class="sidebar-brand"><img src="../assets/images/brand-logo.jpg" class="img-circle"></li>
       <li ng-repeat="item in menu" ng-class="{active: isActive(item.link)}">
         <a ng-href="{{item.link}}"><i class="fa fa-fw {{item.icon}}"></i> {{item.title}}</a>
       </li>
